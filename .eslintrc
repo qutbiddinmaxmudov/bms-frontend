@@ -1,0 +1,56 @@
+{
+  "root": true,
+  "parser": "@babel/eslint-parser",
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:yml/standard",
+    "plugin:@next/next/recommended"
+  ],
+  "ignorePatterns": [
+    "**/node_modules/*"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 8,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "react-hooks", "sort-destructure-keys"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "overrides": [
+    {
+      "extends": [
+        "airbnb",
+        "airbnb/hooks",
+        "airbnb-typescript",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:import/typescript"
+      ],
+      "files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
+      "parserOptions": {
+        "project": ["./tsconfig.json", "./jsconfig.json"]
+      },
+      "settings": {
+        "import/internal-regex": "^@(components|hooks|styles|lib|themes)/.+$"
+      }
+    }
+  ]
+}
