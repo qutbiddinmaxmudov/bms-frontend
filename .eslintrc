@@ -14,13 +14,9 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
-    "plugin:import/typescript",
-    "plugin:yml/standard",
-    "plugin:@next/next/recommended"
+    "plugin:import/typescript"
   ],
-  "ignorePatterns": [
-    "**/node_modules/*"
-  ],
+  "ignorePatterns": ["**/node_modules/*"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -52,5 +48,8 @@
         "import/internal-regex": "^@(components|hooks|styles|lib|themes)/.+$"
       }
     }
-  ]
+  ],
+  "rules": {
+    "react/jsx-one-expression-per-line": ["off"]
+  }
 }
