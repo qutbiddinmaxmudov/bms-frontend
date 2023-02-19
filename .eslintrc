@@ -46,10 +46,10 @@
       },
       "settings": {
         "import/internal-regex": "^@(components|hooks|styles|lib|themes)/.+$"
+      },
+      "rules": {
+        "react/jsx-one-expression-per-line": ["off"]
       }
     }
-  ],
-  "rules": {
-    "react/jsx-one-expression-per-line": ["off"]
-  }
+  ]
 }

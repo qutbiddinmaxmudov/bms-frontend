@@ -21,9 +21,7 @@ function App() {
           type="button"
           onClick={() => setCount((prevCount) => prevCount + 1)}
         >
-          count is
-          {' '}
-          {count}
+          count is {count}
         </button>
         <p>
           Edit
