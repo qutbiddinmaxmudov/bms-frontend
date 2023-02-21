@@ -48,7 +48,8 @@
         "import/internal-regex": "^@(components|hooks|styles|lib|themes)/.+$"
       },
       "rules": {
-        "react/jsx-one-expression-per-line": ["off"]
+        "react/jsx-one-expression-per-line": ["off"],
+        "linebreak-style": 0
       }
     }
   ]

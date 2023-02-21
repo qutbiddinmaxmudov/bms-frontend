@@ -1,39 +1,29 @@
-import React, { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import './App.css';
+/* eslint-disable import/extensions */
+import React from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import
+{
+  Switch,
+  Route,
+  BrowserRouter,
+  Redirect,
+} from 'react-router-dom';
+// eslint-disable-next-line import/no-named-as-default-member
+import RegisterScreen from './pages/register-screen';
+// eslint-disable-next-line @typescript-eslint/semi
+import { AppRoute } from './const.tsx'
 
-function App() {
-  const [count, setCount] = useState(0);
-
+export default function App() {
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button
-          type="button"
-          onClick={() => setCount((prevCount) => prevCount + 1)}
-        >
-          count is {count}
-        </button>
-        <p>
-          Edit
-          <code>src/App.tsx</code>
-          and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path={AppRoute.MAIN}>
+          <Redirect to={AppRoute.SIGN_IN} />
+        </Route>
+        <Route exact path={AppRoute.SIGN_IN}>
+          <RegisterScreen />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
-
-export default App;
