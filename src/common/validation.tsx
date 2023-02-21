@@ -1,7 +1,5 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { literal, object, string } from 'zod';
 
-// eslint-disable-next-line import/prefer-default-export
 export const registerSchema = object({
   name: string()
     .nonempty('Name is required')

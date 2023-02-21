@@ -1,6 +1,4 @@
-/* eslint-disable import/extensions */
 import React from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import
 {
   Switch,
@@ -8,10 +6,8 @@ import
   BrowserRouter,
   Redirect,
 } from 'react-router-dom';
-// eslint-disable-next-line import/no-named-as-default-member
-import RegisterScreen from './pages/register-screen';
-// eslint-disable-next-line @typescript-eslint/semi
-import { AppRoute } from './const.tsx'
+import RegisterScreen from './pages/RegisterScreen';
+import { AppRoute } from './const';
 
 export default function App() {
   return (

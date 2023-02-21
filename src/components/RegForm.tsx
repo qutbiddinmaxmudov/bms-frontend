@@ -12,13 +12,14 @@ import {
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { registerSchema } from '../common/validation';
+import { DateForm } from '../interface/dateForm';
 
 export default function RegForm() {
   const {
     register,
     formState: { errors, isSubmitSuccessful },
-    reset,
     handleSubmit,
+    reset,
   } = useForm({
     resolver: zodResolver(registerSchema),
   });
@@ -27,19 +28,18 @@ export default function RegForm() {
     if (isSubmitSuccessful) {
       reset();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSubmitSuccessful]);
+  }, [isSubmitSuccessful, reset]);
 
-  const onSubmitHandler = (values) => {
-    console.log(values);
-  };
-  console.log(errors);
+  function onSubmit(date: DateForm) {
+    return date;
+  }
 
   return (
-    <Box sx={{
-      maxWidth: '400px',
-      mx: 'auto',
-    }}
+    <Box
+      sx={{
+        maxWidth: '400px',
+        mx: 'auto',
+      }}
     >
       <Typography
         variant="h4"
@@ -53,10 +53,10 @@ export default function RegForm() {
         Register
       </Typography>
       <Box
+        onSubmit={handleSubmit(onSubmit)}
         component="form"
         noValidate
         autoComplete="off"
-        onSubmit={handleSubmit(onSubmitHandler)}
       >
         <TextField
           sx={{ mb: '20px' }}
@@ -65,8 +65,7 @@ export default function RegForm() {
           autoFocus
           required
           error={!!errors.name}
-          helperText={errors.name ? errors.name.message : ''}
-          // eslint-disable-next-line react/jsx-props-no-spreading
+          helperText={`${errors?.name ? errors?.name?.message : ''}`}
           {...register('name')}
         />
         <TextField
@@ -76,8 +75,7 @@ export default function RegForm() {
           required
           type="email"
           error={!!errors.email}
-          helperText={errors.email ? errors.email.message : ''}
-          // eslint-disable-next-line react/jsx-props-no-spreading
+          helperText={`${errors?.email?.message ? errors?.email?.message : ''}`}
           {...register('email')}
         />
         <TextField
@@ -87,8 +85,7 @@ export default function RegForm() {
           required
           type="password"
           error={!!errors.password}
-          helperText={errors.password ? errors.password.message : ''}
-          // eslint-disable-next-line react/jsx-props-no-spreading
+          helperText={`${errors?.password ? errors?.password?.message : ''}`}
           {...register('password')}
         />
         <TextField
@@ -98,17 +95,15 @@ export default function RegForm() {
           required
           type="password"
           error={!!errors.passwordConfirm}
-          helperText={
+          helperText={`${
             errors.passwordConfirm ? errors.passwordConfirm.message : ''
-          }
-          // eslint-disable-next-line react/jsx-props-no-spreading
+          }`}
           {...register('passwordConfirm')}
         />
 
         <FormGroup>
           <FormControlLabel
             control={<Checkbox required />}
-            // eslint-disable-next-line react/jsx-props-no-spreading
             {...register('terms')}
             label={(
               <Typography color={errors.terms ? 'error' : 'black'}>
@@ -117,7 +112,7 @@ export default function RegForm() {
             )}
           />
           <FormHelperText error={!!errors.terms}>
-            {errors.terms ? errors.terms.message : ''}
+            {`${errors?.terms ? errors?.terms?.message : ''}`}
           </FormHelperText>
         </FormGroup>
 
