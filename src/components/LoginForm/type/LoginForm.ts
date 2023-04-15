@@ -1,3 +1,3 @@
-export interface DateForm {
+export interface ILoginForm {
   [identifier: string]: string | boolean;
 }
