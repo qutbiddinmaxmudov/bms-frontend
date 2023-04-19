@@ -1,8 +1,8 @@
 import React from 'react';
 import { RouteProps } from 'react-router-dom';
-import { LoginPage } from '../../../../pages/LoginPage';
-import { MainPage } from '../../../../pages/MainPage';
-import { SettingPage } from '../../../../pages/SettingPage';
+import { LoginPage } from 'pages/LoginPage';
+import { SettingPage } from 'pages/SettingPage';
+import { MainPage } from 'pages/MainPage';
 import { RedirectForAuth } from '../../../../modules/Authorization/hoc/RedirectForAuth/RedirectForAuth';
 import { RedirectForNoAuth } from '../../../../modules/Authorization';
 

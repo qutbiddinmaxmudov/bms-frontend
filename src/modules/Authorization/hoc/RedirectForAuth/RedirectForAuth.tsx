@@ -5,7 +5,7 @@ import { Loader } from '../../../../ui/Loader';
 import { getIsCheckAuth } from '../../store/selectors/getIsCheckAuth/getIsCheckAuth';
 import { getUser } from '../../store/selectors/getUser/getUser';
 
-export function RedirectForAuth({ children }: any) {
+export const RedirectForAuth = ({ children }: any) => {
   const isAuth = useSelector(getUser);
   const isCheckAuth = useSelector(getIsCheckAuth);
 
@@ -21,4 +21,4 @@ export function RedirectForAuth({ children }: any) {
   }
 
   return children;
-}
+};
