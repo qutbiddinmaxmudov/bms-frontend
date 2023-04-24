@@ -1,26 +1,75 @@
 import React, { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { RedirectForAuth, RedirectForNoAuth } from '../../../../modules/Authorization';
+import { LoginPage } from '../../../../pages/LoginPage';
+import { MainPage } from '../../../../pages/MainPage';
+import { SettingPage } from '../../../../pages/SettingPage';
 import { Loader } from '../../../../ui/Loader';
+import Layout from '../../../Layout/Layout';
 
-import { routeConfig } from '../config/routeConfig';
+import { RoutePath } from '../config/routeConfig';
 
 function AppRouter() {
   return (
     <Routes>
-      {Object.values(routeConfig).map(({ element, path }) => (
+      <Route
+        key="layout"
+        path={RoutePath.main || RoutePath.setting}
+        element={(
+          <Suspense fallback={<Loader />}>
+            <RedirectForNoAuth><Layout /></RedirectForNoAuth>
+          </Suspense>
+        )}
+      >
         <Route
-          key={path}
-          path={path}
+          key={RoutePath.main}
+          path={RoutePath.main}
           element={(
             <Suspense fallback={<Loader />}>
-              {element}
+              <MainPage />
             </Suspense>
-
-                )}
+          )}
         />
-      ))}
+        <Route
+          key={RoutePath.setting}
+          path={RoutePath.setting}
+          element={(
+            <Suspense fallback={<Loader />}>
+              <SettingPage />
+            </Suspense>
+        )}
+        />
+      </Route>
+      <Route
+        key={RoutePath.login}
+        path={RoutePath.login}
+        element={(
+          <Suspense fallback={<Loader />}>
+            <RedirectForAuth><LoginPage /></RedirectForAuth>
+          </Suspense>
+        )}
+      />
     </Routes>
   );
 }
+
+// function AppRouter() {
+//   return (
+//     <Routes>
+//       {Object.values(routeConfig).map(({ element, path }) => (
+//         <Route
+//           key={path}
+//           path={path}
+//           element={(
+//             <Suspense fallback={<Loader />}>
+//               {element}
+//             </Suspense>
+
+//                 )}
+//         />
+//       ))}
+//     </Routes>
+//   );
+// }
 
 export default AppRouter;
