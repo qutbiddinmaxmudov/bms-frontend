@@ -5,7 +5,7 @@ import { DrawerMain } from '../../../ui/DrawerMain';
 
 const drawerWidth = 240;
 
-export default function MainPage() {
+const SettingPage = () => {
   const isOpen: boolean = useOutletContext();
 
   return (
@@ -19,4 +19,6 @@ export default function MainPage() {
     </DrawerMain>
 
   );
-}
+};
+
+export default SettingPage;

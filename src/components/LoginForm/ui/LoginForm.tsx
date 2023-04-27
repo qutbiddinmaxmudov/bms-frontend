@@ -20,7 +20,7 @@ interface ILoginFormProps {
   errorText: string | undefined;
 }
 
-export function LoginForm(props: ILoginFormProps) {
+export const LoginForm = (props: ILoginFormProps) => {
   const { onSubmit, isLoading, errorText } = props;
   const {
     register,
@@ -122,4 +122,4 @@ export function LoginForm(props: ILoginFormProps) {
       </Box>
     </Box>
   );
-}
+};

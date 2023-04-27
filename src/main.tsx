@@ -1,14 +1,16 @@
 import React from 'react';
-import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import { createRoot } from 'react-dom/client';
+
 import App from './app/App';
 import { StoreProvider } from './app/providers/StoreProvider';
 
-render(
+const container = document.getElementById('root');
+const root = createRoot(container!);
+root.render(
   <StoreProvider>
     <BrowserRouter>
       <App />
     </BrowserRouter>
   </StoreProvider>,
-  document.getElementById('root'),
 );

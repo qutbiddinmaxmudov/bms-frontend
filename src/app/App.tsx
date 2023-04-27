@@ -4,7 +4,7 @@ import { fetchAuthorization, getIsCheckAuth } from '../modules/Authorization';
 import { Loader } from '../ui/Loader';
 import { AppRouter } from './providers/RouterProvider';
 
-function App() {
+const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchAuthorization());
@@ -16,9 +16,7 @@ function App() {
     return <Loader />;
   }
 
-  return (
-    <AppRouter />
-  );
-}
+  return <AppRouter />;
+};
 
 export default App;
