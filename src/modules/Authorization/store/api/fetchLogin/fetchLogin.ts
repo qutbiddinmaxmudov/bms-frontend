@@ -25,13 +25,13 @@ const api = createAPI();
 export const fetchLogin = createAsyncThunk<any, ILogin, { rejectValue: any }>(
   'users/fetchLogin',
   async ({ username, password }, { rejectWithValue }) => {
-    // const { username, password } = loginData;
     try {
       const response = await api.post('/auth/login', { username, password });
       localStorage.setItem(USER_LOCALSTORAGE_KEY, response.data.access.access_token);
       return response.data.user;
     } catch (err: any) {
       const { response } = err;
+      console.log(response.data);
       return rejectWithValue(response.data);
     }
   },

@@ -30,7 +30,7 @@ export const customerSlice = createSlice({
       } else {
         delete state.user;
         state.auth.isCheckAuth = true;
-        state.auth.error = action.payload.message;
+        state.auth.error = action.payload?.message;
       }
     });
     builder.addCase(fetchLogin.fulfilled, (state, action) => {
@@ -42,6 +42,9 @@ export const customerSlice = createSlice({
       state.auth.error = action.payload.message;
       state.auth.isCheckAuth = true;
       delete state.user;
+    });
+    builder.addCase(fetchLogin.pending, (state) => {
+      delete state.auth.error;
     });
   },
 });

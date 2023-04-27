@@ -8,6 +8,7 @@ import {
   Typography,
   Checkbox,
   Button,
+  Alert,
 } from '@mui/material';
 import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -38,52 +39,53 @@ export const LoginForm = (props: ILoginFormProps) => {
       }}
     >
       <Typography
-        variant="h4"
-        component="h1"
-        sx={{
-          textAlign: 'center',
-          color: 'black',
-          m: '40px 0 20px',
-        }}
+        variant="h3"
+        gutterBottom
+        sx={{ textAlign: 'center' }}
       >
         Login
       </Typography>
-      <FormHelperText
-        error
+      <Box
         sx={{
-          textAlign: 'center',
-          m: '0 0 20px',
+          height: '50px',
+          mb: 2,
         }}
       >
-        {errorText}
-      </FormHelperText>
+        <Alert
+          severity="error"
+          sx={{
+            ...(!errorText && { display: 'none' }),
+          }}
+        >
+          {errorText}
+        </Alert>
+      </Box>
       <Box
         onSubmit={handleSubmit(onSubmit)}
         component="form"
         noValidate
         autoComplete="off"
       >
-        <TextField
-          sx={{ mb: '20px' }}
-          label="Username"
-          fullWidth
-          required
-          error={!!errors.username}
-          helperText={`${errors?.username?.message ? errors?.username?.message : ''}`}
-          {...register('username')}
-        />
-        <TextField
-          sx={{ mb: '20px' }}
-          label="Password"
-          fullWidth
-          required
-          type="password"
-          error={!!errors.password}
-          helperText={`${errors?.password ? errors?.password?.message : ''}`}
-          {...register('password')}
-        />
-
         <FormGroup>
+          <TextField
+            sx={{ mb: '20px' }}
+            label="Username"
+            fullWidth
+            required
+            error={!!errors.username}
+            helperText={`${errors?.username?.message ? errors?.username?.message : ''}`}
+            {...register('username')}
+          />
+          <TextField
+            sx={{ mb: '20px' }}
+            label="Password"
+            fullWidth
+            required
+            type="password"
+            error={!!errors.password}
+            helperText={`${errors?.password ? errors?.password?.message : ''}`}
+            {...register('password')}
+          />
           <Controller
             control={control}
             defaultValue={false}
