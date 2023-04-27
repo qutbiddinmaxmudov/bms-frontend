@@ -1,9 +1,7 @@
 import React from 'react';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import { useTheme } from '@mui/material/styles';
-import {
-  IconButton, Toolbar,
-} from '@mui/material';
+import { IconButton, Toolbar } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { UserInfo } from '../../UserInfo';
 
@@ -17,12 +15,14 @@ interface NavBarProps extends MuiAppBarProps {
   handleDrawerOpen: () => void;
 }
 
-export function DrawerNavBar(props: NavBarProps) {
+const DrawerNavBar: React.FC<NavBarProps> = ({
+  isOpen,
+  offsetWidth,
+  handleDrawerOpen,
+  user,
+}) => {
   const theme = useTheme();
 
-  const {
-    isOpen, offsetWidth, handleDrawerOpen, user,
-  } = props;
   return (
     <MuiAppBar
       sx={{
@@ -47,7 +47,6 @@ export function DrawerNavBar(props: NavBarProps) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-
         }}
       >
         <IconButton
@@ -62,11 +61,10 @@ export function DrawerNavBar(props: NavBarProps) {
         >
           <MenuIcon />
         </IconButton>
-        <UserInfo
-          name={user.userName}
-          role={user.role}
-        />
+        <UserInfo name={user.userName} role={user.role} />
       </Toolbar>
     </MuiAppBar>
   );
-}
+};
+
+export default DrawerNavBar;

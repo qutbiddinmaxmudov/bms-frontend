@@ -1,5 +1,3 @@
-import { LinkList } from './ui/LinkList';
+import LinkList from './ui/LinkList';
 
-export {
-  LinkList,
-};
+export { LinkList };

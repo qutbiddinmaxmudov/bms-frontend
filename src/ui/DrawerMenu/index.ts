@@ -1,5 +1,3 @@
-import { DrawerMenu } from './ui/DrawerMenu';
+import DrawerMenu from './ui/DrawerMenu';
 
-export {
-  DrawerMenu,
-};
+export { DrawerMenu };

@@ -1,5 +1,3 @@
-import { DrawerNavBar } from './ui/DrawerNavBar';
+import DrawerNavBar from './ui/DrawerNavBar';
 
-export {
-  DrawerNavBar,
-};
+export { DrawerNavBar };

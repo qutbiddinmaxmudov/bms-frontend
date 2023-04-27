@@ -1,14 +1,12 @@
 import React from 'react';
-import {
-  Avatar, Box, Typography,
-} from '@mui/material';
+import { Avatar, Box, Typography } from '@mui/material';
 
 interface UserInfoProps {
   name: string;
   role: string;
 }
 
-export function UserInfo(props: UserInfoProps) {
+const UserInfo = (props: UserInfoProps) => {
   const { name, role } = props;
   return (
     <>
@@ -41,12 +39,16 @@ export function UserInfo(props: UserInfoProps) {
         </Typography>
       </Box>
 
-      <Avatar sx={{
-        bgcolor: 'grey',
-        ml: 2,
-      }}
-      >N
+      <Avatar
+        sx={{
+          bgcolor: 'grey',
+          ml: 2,
+        }}
+      >
+        N
       </Avatar>
     </>
   );
-}
+};
+
+export default UserInfo;

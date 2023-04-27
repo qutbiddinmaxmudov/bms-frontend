@@ -8,13 +8,13 @@ import { Link } from 'react-router-dom';
 
 interface LinkListProps {
   linkList: {
-    text: string,
-    icon: JSX.Element,
-    link: string,
+    text: string;
+    icon: JSX.Element;
+    link: string;
   }[];
 }
 
-export function LinkList(props: LinkListProps) {
+const LinkList = (props: LinkListProps) => {
   const { linkList } = props;
   return (
     <List>
@@ -28,9 +28,7 @@ export function LinkList(props: LinkListProps) {
         >
           <ListItem key={text} disablePadding>
             <ListItemButton>
-              <ListItemIcon>
-                {icon}
-              </ListItemIcon>
+              <ListItemIcon>{icon}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
           </ListItem>
@@ -38,4 +36,6 @@ export function LinkList(props: LinkListProps) {
       ))}
     </List>
   );
-}
+};
+
+export default LinkList;

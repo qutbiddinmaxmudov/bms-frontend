@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { PropsWithChildren } from 'react';
 import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
@@ -12,15 +12,15 @@ import logo from '../logo.png';
 interface DrawerMenuProps {
   menuWidth: number;
   isOpen: boolean;
-  children: ReactElement
   handleDrawerClose: () => void;
 }
 
-export function DrawerMenu(props: DrawerMenuProps) {
-  const {
-    menuWidth, isOpen, handleDrawerClose, children,
-  } = props;
-
+const DrawerMenu: React.FC<PropsWithChildren<DrawerMenuProps>> = ({
+  menuWidth,
+  isOpen,
+  handleDrawerClose,
+  children,
+}) => {
   const theme = useTheme();
 
   return (
@@ -58,10 +58,12 @@ export function DrawerMenu(props: DrawerMenuProps) {
           <img src={logo} width="50px" alt="logo" />
           BMS
         </Typography>
-        <IconButton
-          onClick={handleDrawerClose}
-        >
-          {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+        <IconButton onClick={handleDrawerClose}>
+          {theme.direction === 'ltr' ? (
+            <ChevronLeftIcon />
+          ) : (
+            <ChevronRightIcon />
+          )}
         </IconButton>
       </Box>
       <Divider />
@@ -69,4 +71,5 @@ export function DrawerMenu(props: DrawerMenuProps) {
       <Divider />
     </Drawer>
   );
-}
+};
+export default DrawerMenu;

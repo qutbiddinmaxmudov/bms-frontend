@@ -1,5 +1,3 @@
-import { UserInfo } from './ui/UserInfo';
+import UserInfo from './ui/UserInfo';
 
-export {
-  UserInfo,
-};
+export { UserInfo };

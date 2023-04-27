@@ -29,7 +29,7 @@ const linkList = [
   },
 ];
 
-export default function Layout() {
+const Layout = () => {
   const [open, setOpen] = useState(true);
 
   const handleDrawerOpen = () => {
@@ -61,4 +61,6 @@ export default function Layout() {
       </Box>
     </Container>
   );
-}
+};
+
+export default Layout;
