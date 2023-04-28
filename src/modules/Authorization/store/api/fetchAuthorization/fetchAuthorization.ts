@@ -12,9 +12,7 @@ interface CommonHeaderProperties extends HeadersDefaults {
 }
 
 export const fetchAuthorization = createAsyncThunk<
-  UserSchema,
-  undefined,
-  { rejectValue: any }
+UserSchema, undefined, { rejectValue: any }
 >(
   'users/fetchAuth',
   async (_, { rejectWithValue }) => {
@@ -28,7 +26,9 @@ export const fetchAuthorization = createAsyncThunk<
   },
   {
     condition: () => {
-      const user = localStorage.getItem(import.meta.env.VITE_USER_LOCALSTORAGE_KEY);
+      const user = localStorage.getItem(
+        import.meta.env.VITE_USER_LOCALSTORAGE_KEY,
+      );
       if (!user) {
         return false;
       }
