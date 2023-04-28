@@ -14,7 +14,10 @@ function createData(
   sum: number,
 ) {
   return {
-    enterprise, quantity, paymentType, sum,
+    enterprise,
+    quantity,
+    paymentType,
+    sum,
   };
 }
 
@@ -24,45 +27,40 @@ const rows = [
   createData('Enterprise-3', 1, 'card', 2345),
 ];
 
-export function BaseTable() {
-  return (
-    <TableContainer
-      sx={{
-        textAlign: 'center',
-        mr: 'auto',
-        ml: 'auto',
-        mt: 2,
-      }}
-      component={Paper}
-    >
-      <Table
-        size="small"
-        aria-label="simple table"
-      >
-        <TableHead>
-          <TableRow>
-            <TableCell>Enterprise</TableCell>
-            <TableCell align="right">Quantity</TableCell>
-            <TableCell align="right">Payment Type</TableCell>
-            <TableCell align="right">Sum&nbsp;($)</TableCell>
+export const BaseTable = () => (
+  <TableContainer
+    sx={{
+      textAlign: 'center',
+      mr: 'auto',
+      ml: 'auto',
+      mt: 2,
+    }}
+    component={Paper}
+  >
+    <Table size="small" aria-label="simple table">
+      <TableHead>
+        <TableRow>
+          <TableCell>Enterprise</TableCell>
+          <TableCell align="right">Quantity</TableCell>
+          <TableCell align="right">Payment Type</TableCell>
+          <TableCell align="right">Sum&nbsp;($)</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {rows.map((row) => (
+          <TableRow
+            key={row.enterprise}
+            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+          >
+            <TableCell component="th" scope="row">
+              {row.enterprise}
+            </TableCell>
+            <TableCell align="right">{row.quantity}</TableCell>
+            <TableCell align="right">{row.paymentType}</TableCell>
+            <TableCell align="right">{row.sum}</TableCell>
           </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.enterprise}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.enterprise}
-              </TableCell>
-              <TableCell align="right">{row.quantity}</TableCell>
-              <TableCell align="right">{row.paymentType}</TableCell>
-              <TableCell align="right">{row.sum}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
-}
+        ))}
+      </TableBody>
+    </Table>
+  </TableContainer>
+);

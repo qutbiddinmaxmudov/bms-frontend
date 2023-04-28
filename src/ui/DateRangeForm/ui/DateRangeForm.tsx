@@ -90,4 +90,4 @@ const DateRangeForm = () => {
   );
 };
 
-export default DateRangeForm
+export default DateRangeForm;
