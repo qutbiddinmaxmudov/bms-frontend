@@ -2,17 +2,20 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { HeadersDefaults } from 'axios';
 import { UserSchema } from '../../types/userShema';
 
-const USER_LOCALSTORAGE_KEY = 'user';
-
 const api = axios.create({
-  baseURL: import.meta.env.BACKEND_URL,
+  baseURL: import.meta.env.VITE_BACKEND_URL,
+  timeout: +import.meta.env.VITE_REQUEST_TIMEOUT,
 });
 
 interface CommonHeaderProperties extends HeadersDefaults {
   Authorization: string;
 }
 
-export const fetchAuthorization = createAsyncThunk<UserSchema, undefined, { rejectValue: any }>(
+export const fetchAuthorization = createAsyncThunk<
+  UserSchema,
+  undefined,
+  { rejectValue: any }
+>(
   'users/fetchAuth',
   async (_, { rejectWithValue }) => {
     try {
@@ -25,7 +28,7 @@ export const fetchAuthorization = createAsyncThunk<UserSchema, undefined, { reje
   },
   {
     condition: () => {
-      const user = localStorage.getItem(USER_LOCALSTORAGE_KEY);
+      const user = localStorage.getItem(import.meta.env.VITE_USER_LOCALSTORAGE_KEY);
       if (!user) {
         return false;
       }
@@ -36,5 +39,4 @@ export const fetchAuthorization = createAsyncThunk<UserSchema, undefined, { reje
     },
     dispatchConditionRejection: true,
   },
-
 );
