@@ -8,13 +8,10 @@ interface ILogin {
   password: string;
 }
 
-const BACKEND_URL = 'https://bms-backend-production.up.railway.app';
-const REQUEST_TIMEOUT = 5000;
-
 const createAPI = () => {
   const api = axios.create({
-    baseURL: BACKEND_URL,
-    timeout: REQUEST_TIMEOUT,
+    baseURL: import.meta.env.BACKEND_URL,
+    timeout: +import.meta.env.REQUEST_TIMEOUT,
   });
 
   return api;

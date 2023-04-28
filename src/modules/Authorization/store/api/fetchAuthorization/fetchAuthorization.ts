@@ -5,7 +5,7 @@ import { UserSchema } from '../../types/userShema';
 const USER_LOCALSTORAGE_KEY = 'user';
 
 const api = axios.create({
-  baseURL: 'https://bms-backend-production.up.railway.app',
+  baseURL: import.meta.env.BACKEND_URL,
 });
 
 interface CommonHeaderProperties extends HeadersDefaults {
