@@ -29,7 +29,7 @@ interface PieChartProps {
   name: string
 }
 
-export function AreaChart(props: PieChartProps) {
+export const AreaChart = (props: PieChartProps) => {
   const { height, data, name } = props;
 
   const options = {
@@ -59,4 +59,4 @@ export function AreaChart(props: PieChartProps) {
       <Line options={options} data={data} />
     </Box>
   );
-}
+};
