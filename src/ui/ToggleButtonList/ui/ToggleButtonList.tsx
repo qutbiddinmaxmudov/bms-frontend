@@ -6,7 +6,7 @@ interface ToggleButtonListProps {
   onClick: (p: string) => void
 }
 
-function ToggleButtonList(props: ToggleButtonListProps) {
+const ToggleButtonList = (props: ToggleButtonListProps) => {
   const { list, onClick } = props;
 
   return (
@@ -31,6 +31,6 @@ function ToggleButtonList(props: ToggleButtonListProps) {
       ))}
     </ToggleButtonGroup>
   );
-}
+};
 
 export default ToggleButtonList;

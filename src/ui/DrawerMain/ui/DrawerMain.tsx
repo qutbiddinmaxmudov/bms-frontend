@@ -8,7 +8,7 @@ interface DrawerMainProps {
   isOpen: boolean;
 }
 
-export function DrawerMain(props: DrawerMainProps) {
+export const DrawerMain = (props: DrawerMainProps) => {
   const { children, drawerWidth, isOpen } = props;
   const theme = useTheme();
   return (
@@ -35,4 +35,4 @@ export function DrawerMain(props: DrawerMainProps) {
     </Box>
 
   );
-}
+};

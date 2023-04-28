@@ -13,7 +13,7 @@ interface PieChartProps {
   name: string
 }
 
-export function PieChart(props: PieChartProps) {
+export const PieChart = (props: PieChartProps) => {
   const { height, data, name } = props;
 
   const options = {
@@ -43,4 +43,4 @@ export function PieChart(props: PieChartProps) {
       <Pie options={options} data={data} />
     </Box>
   );
-}
+};
