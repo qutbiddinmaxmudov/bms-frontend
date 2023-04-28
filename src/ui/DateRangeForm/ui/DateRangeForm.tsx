@@ -5,9 +5,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 import weekday from 'dayjs/plugin/weekday';
 import dayOfYear from 'dayjs/plugin/dayOfYear';
-import {
-  Box, Button,
-} from '@mui/material';
+import { Box, Button } from '@mui/material';
 import ToggleButtonList from '../../ToggleButtonList/ui/ToggleButtonList';
 
 dayjs.extend(weekday);
@@ -15,7 +13,7 @@ dayjs.extend(dayOfYear);
 
 const toggleList = ['Yesterday', 'Today', 'Tomorrow', 'Week', 'Month', 'Year'];
 
-export function DateRangeForm() {
+const DateRangeForm = () => {
   const [startDate, setStartDate] = useState(dayjs());
   const [endDate, setEndDate] = useState(dayjs());
 
@@ -57,10 +55,7 @@ export function DateRangeForm() {
         textAlign: 'center',
       }}
     >
-      <ToggleButtonList
-        list={toggleList}
-        onClick={onClickToggleButton}
-      />
+      <ToggleButtonList list={toggleList} onClick={onClickToggleButton} />
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <Box>
           <DatePicker
@@ -70,7 +65,7 @@ export function DateRangeForm() {
             maxDate={endDate}
             label="Start date"
             value={startDate}
-            onChange={(newValue:any) => {
+            onChange={(newValue: any) => {
               setStartDate(newValue);
             }}
           />
@@ -78,7 +73,7 @@ export function DateRangeForm() {
             minDate={startDate}
             label="End date"
             value={endDate}
-            onChange={(newValue:any) => setEndDate(newValue)}
+            onChange={(newValue: any) => setEndDate(newValue)}
           />
         </Box>
         <Button
@@ -91,8 +86,8 @@ export function DateRangeForm() {
           Show
         </Button>
       </LocalizationProvider>
-
     </Box>
-
   );
-}
+};
+
+export default DateRangeForm

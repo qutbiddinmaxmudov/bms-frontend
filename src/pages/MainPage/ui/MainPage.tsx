@@ -2,7 +2,7 @@ import React from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { Grid } from '@mui/material';
 import { DrawerMain } from '../../../ui/DrawerMain';
-import { DateRangeForm } from '../../../ui/DateRangeForm/ui/DateRangeForm';
+import DateRangeForm from '../../../ui/DateRangeForm/ui/DateRangeForm';
 import { AreaChart } from '../../../ui/AreaChart/AreaChart';
 import { BaseTable } from '../../../ui/BaseTable/ui/BaseTable';
 import { PieChart } from '../../../ui/PieChart/ui/PieChart';
@@ -47,34 +47,24 @@ export const dataAreaChart = {
   ],
 };
 
-export default function MainPage() {
+const MainPage = () => {
   const isOpen: boolean = useOutletContext();
   return (
-    <DrawerMain
-      drawerWidth={drawerWidth}
-      isOpen={isOpen}
-    >
+    <DrawerMain drawerWidth={drawerWidth} isOpen={isOpen}>
       <DateRangeForm />
       <Grid alignItems="center" justifyContent="center" container spacing={2}>
         <Grid item xs={12}>
           <BaseTable />
         </Grid>
         <Grid item xs={6}>
-          <AreaChart
-            height={300}
-            data={dataAreaChart}
-            name="Transaction"
-          />
+          <AreaChart height={300} data={dataAreaChart} name="Transaction" />
         </Grid>
         <Grid item xs={6}>
-          <PieChart
-            height={300}
-            data={dataPieChart}
-            name="Expense segments"
-          />
+          <PieChart height={300} data={dataPieChart} name="Expense segments" />
         </Grid>
       </Grid>
     </DrawerMain>
-
   );
-}
+};
+
+export default MainPage;
