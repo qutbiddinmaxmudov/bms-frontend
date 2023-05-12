@@ -1,10 +1,10 @@
+import { LoginForm } from 'components/molecule/LoginForm';
 import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { LoginForm } from '../../../components/LoginForm';
 import { fetchLogin } from '../store/api/fetchLogin/fetchLogin';
 import { getError } from '../store/selectors/getError/getError';
 
-const AuthForm = () => {
+const AuthForm: React.FC = () => {
   const getErr = useSelector(getError);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -23,6 +23,11 @@ const AuthForm = () => {
 
   return (
     <LoginForm
+      styles={{
+        mr: 'auto',
+        ml: 'auto',
+        maxWidth: '400px',
+      }}
       onSubmit={onSubmitMemo}
       isLoading={isLoading}
       errorText={getErr}
@@ -30,4 +35,4 @@ const AuthForm = () => {
   );
 };
 
-export default AuthForm;
+export { AuthForm };

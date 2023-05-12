@@ -61,7 +61,9 @@
         ],
         "react/require-default-props": 0,
         "import/no-unresolved": 0,
-        "arrow-body-style": 1
+        "arrow-body-style": 1,
+        "import/no-cycle": 0,
+        "no-param-reassign": 0
       }
     }
   ]

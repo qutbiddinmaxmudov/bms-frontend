@@ -1,8 +1,8 @@
+import { Loader } from 'components/atom/Loader';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAuthorization, getIsCheckAuth } from '../modules/Authorization';
-import { Loader } from '../ui/Loader';
-import { AppRouter } from './providers/RouterProvider';
+import { AppRouter } from './router/RouterProvider';
 
 const App = () => {
   const dispatch = useDispatch();

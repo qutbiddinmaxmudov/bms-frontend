@@ -1,80 +1,99 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import { Grid } from '@mui/material';
-import { DrawerMain } from '../../../ui/DrawerMain';
-import { DateRangeForm } from '../../../ui/DateRangeForm/ui/DateRangeForm';
-import { AreaChart } from '../../../ui/AreaChart/AreaChart';
-import { BaseTable } from '../../../ui/BaseTable/ui/BaseTable';
-import { PieChart } from '../../../ui/PieChart/ui/PieChart';
+
+import { DrawerMain } from 'components/molecule/DrawerMain';
+import { DateRangeForm } from 'components/molecule/DateRangeForm';
+
+import { Title } from 'components/atom/Title';
+import { ChartBoard } from 'components/organism/ChartBoard';
+import { useDispatch, useSelector } from 'react-redux';
+import { getObjectDate, getStringDate } from 'components/molecule/DateRangeForm/assets/date/date';
+import {
+  getDate,
+  getEndDate, getStartDate, setEndDate, setStartDate,
+} from '../../../app/store/Date';
 
 const drawerWidth = 240;
 
-const dataPieChart = {
-  labels: ['Salary', 'Rent', 'Taxes', 'Raw material', 'Equipment'],
-  datasets: [
-    {
-      label: '$',
-      data: [12, 19, 3, 5, 2],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-      ],
-      borderWidth: 1,
-    },
-  ],
-};
-
-export const dataAreaChart = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-  datasets: [
-    {
-      fill: true,
-      label: '$',
-      data: [100, 200, 500, 600, 700, 300, 200],
-      borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
-    },
-  ],
-};
-
-export default function MainPage() {
+const MainPage: React.FC = () => {
   const isOpen: boolean = useOutletContext();
+
+  const rangeDate = useSelector(getDate);
+  const startDate = useSelector(getStartDate);
+  const endDate = useSelector(getEndDate);
+
+  const prevStartDate = useRef();
+  const prevEndDate = useRef();
+
+  const [isDisabledButton, setDisabledButton] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+  const [gettingRangeDate, setGettingRangeDate] = useState<any>(null);
+
+  const dispatch: any = useDispatch();
+
+  const onChangeStartDate = (value: string) => {
+    dispatch(setStartDate(getStringDate(value)));
+  };
+
+  useEffect(() => {
+    if (startDate === prevStartDate.current) {
+      setDisabledButton(true);
+    } else {
+      setDisabledButton(false);
+    }
+  }, [startDate]);
+
+  const onChangeEndDate = (value: string) => {
+    dispatch(setEndDate(getStringDate(value)));
+  };
+
+  useEffect(() => {
+    if (endDate === prevEndDate.current) {
+      setDisabledButton(true);
+    } else {
+      setDisabledButton(false);
+    }
+  }, [endDate]);
+
+  const onClickShowButton = () => {
+    setLoading(true);
+    setGettingRangeDate(rangeDate);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+    setTimeout(() => {
+      setDisabledButton(true);
+    }, 1500);
+
+    prevStartDate.current = startDate;
+    prevEndDate.current = endDate;
+  };
+
   return (
     <DrawerMain
       drawerWidth={drawerWidth}
       isOpen={isOpen}
     >
-      <DateRangeForm />
-      <Grid alignItems="center" justifyContent="center" container spacing={2}>
-        <Grid item xs={12}>
-          <BaseTable />
-        </Grid>
-        <Grid item xs={6}>
-          <AreaChart
-            height={300}
-            data={dataAreaChart}
-            name="Transaction"
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <PieChart
-            height={300}
-            data={dataPieChart}
-            name="Expense segments"
-          />
-        </Grid>
-      </Grid>
+      <Title title="metrics" />
+      <DateRangeForm
+        onClickShowButton={onClickShowButton}
+        isDisbledButton={isDisabledButton}
+        isLoading={isLoading}
+        startDate={getObjectDate(startDate)}
+        endDate={getObjectDate(endDate)}
+        changeStartDate={onChangeStartDate}
+        changeEndDate={onChangeEndDate}
+        styles={{
+          mb: '60px',
+        }}
+      />
+      <ChartBoard
+        date={gettingRangeDate}
+        isLoading={isLoading}
+      />
     </DrawerMain>
 
   );
-}
+};
+
+export default MainPage;

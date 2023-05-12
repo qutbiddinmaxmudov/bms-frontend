@@ -31,7 +31,6 @@ export const fetchLogin = createAsyncThunk<any, ILogin, { rejectValue: any }>(
       return response.data.user;
     } catch (err: any) {
       const { response } = err;
-      console.log(response.data);
       return rejectWithValue(response.data);
     }
   },
