@@ -1,16 +1,17 @@
 import { CSSProperties } from '@material-ui/core/styles/withStyles';
 import { Button } from '@mui/material';
-import React, { PropsWithChildren } from 'react';
+import React, { ReactElement } from 'react';
 
 interface ButtonProps {
-  onClick: () => void;
+  onClick?: () => void;
   isLoading?: boolean
   isDisabled?: boolean
   loadingText?: string
   styles?: CSSProperties
+  children: ReactElement
 }
 
-const SubmitButton: React.FC<PropsWithChildren<ButtonProps>> = ({
+const SubmitButton: React.FC<ButtonProps> = ({
   isLoading, loadingText, isDisabled, children, styles, onClick,
 }) => (
   <Button
