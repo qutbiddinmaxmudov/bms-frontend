@@ -3,8 +3,8 @@ import { RedirectForNoAuth } from './hoc/RedirectForNoAuth/RedirectForNoAuth';
 import { fetchAuthorization } from './store/api/fetchAuthorization/fetchAuthorization';
 import { getError } from './store/selectors/getError/getError';
 import { getIsCheckAuth } from './store/selectors/getIsCheckAuth/getIsCheckAuth';
-import { customerSlice } from './store/slice/customerSlice';
-import AuthForm from './ui/AuthForm';
+
+import { AuthForm } from './ui/AuthForm';
 
 export {
   AuthForm,
@@ -12,6 +12,5 @@ export {
   RedirectForAuth,
   getError,
   getIsCheckAuth,
-  customerSlice,
   fetchAuthorization,
 };

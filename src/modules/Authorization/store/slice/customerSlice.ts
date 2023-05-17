@@ -10,7 +10,7 @@ const initialState: CustomerSchema = {
   },
 };
 
-export const customerSlice = createSlice({
+const customerSlice = createSlice({
   name: 'customer',
   initialState,
   reducers: {},

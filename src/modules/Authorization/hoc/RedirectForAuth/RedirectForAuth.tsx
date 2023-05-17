@@ -1,11 +1,12 @@
-import React from 'react';
+import { Loader } from 'components/atom/Loader';
+import React, { PropsWithChildren } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
-import { Loader } from '../../../../ui/Loader';
+
 import { getIsCheckAuth } from '../../store/selectors/getIsCheckAuth/getIsCheckAuth';
 import { getUser } from '../../store/selectors/getUser/getUser';
 
-export const RedirectForAuth = ({ children }: any) => {
+const RedirectForAuth: React.FC<PropsWithChildren> = ({ children }) => {
   const isAuth = useSelector(getUser);
   const isCheckAuth = useSelector(getIsCheckAuth);
 
@@ -22,3 +23,5 @@ export const RedirectForAuth = ({ children }: any) => {
 
   return children;
 };
+
+export { RedirectForAuth };
