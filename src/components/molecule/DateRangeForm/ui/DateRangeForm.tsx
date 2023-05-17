@@ -98,7 +98,7 @@ const DateRangeForm: React.FC<DateRangeFormProps> = ({
             width: '130px',
           }}
         >
-          SHOW
+          <p>SHOW</p>
         </SubmitButton>
 
       </LocalizationProvider>

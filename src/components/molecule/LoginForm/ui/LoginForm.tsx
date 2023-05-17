@@ -88,7 +88,7 @@ const LoginForm: React.FC<ILoginFormProps> = ({
           isLoading={isLoading}
           loadingText="Loading..."
         >
-          Login
+          <p>Login</p>
         </SubmitButton>
       </Box>
     </Box>
