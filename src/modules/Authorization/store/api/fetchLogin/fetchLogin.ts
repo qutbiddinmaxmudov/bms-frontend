@@ -1,20 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const USER_LOCALSTORAGE_KEY = 'user';
-
 interface ILogin {
   username: string;
   password: string;
 }
 
-const BACKEND_URL = 'https://bms-backend-production.up.railway.app';
-const REQUEST_TIMEOUT = 5000;
-
 const createAPI = () => {
   const api = axios.create({
-    baseURL: BACKEND_URL,
-    timeout: REQUEST_TIMEOUT,
+    baseURL: import.meta.env.VITE_BACKEND_URL,
+    timeout: +import.meta.env.VITE_REQUEST_TIMEOUT,
   });
 
   return api;
@@ -27,7 +22,10 @@ export const fetchLogin = createAsyncThunk<any, ILogin, { rejectValue: any }>(
   async ({ username, password }, { rejectWithValue }) => {
     try {
       const response = await api.post('/auth/login', { username, password });
-      localStorage.setItem(USER_LOCALSTORAGE_KEY, response.data.access.access_token);
+      localStorage.setItem(
+        import.meta.env.VITE_USER_LOCALSTORAGE_KEY,
+        response.data.access.access_token,
+      );
       return response.data.user;
     } catch (err: any) {
       const { response } = err;
